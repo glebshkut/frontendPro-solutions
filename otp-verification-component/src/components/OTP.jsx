@@ -3,9 +3,9 @@ import Input from "./Input";
 
 export default function OTP() {
   const inputsAmount = 4;
-  const answer = "3578";
+  const answer = "1187";
   const [active, setActive] = useState(0);
-  const [result, setResult] = useState("");
+  const [otpValues, setOTPValues] = useState(new Array(inputsAmount).fill(""));
 
   const inputsArray = () => {
     const arr = [];
@@ -16,7 +16,8 @@ export default function OTP() {
           active={active}
           setActive={setActive}
           inputsAmount={inputsAmount}
-          setResult={setResult}
+          otpValues={otpValues}
+          setOTPValues={setOTPValues}
         />
       );
     }
@@ -25,10 +26,11 @@ export default function OTP() {
 
   return (
     <div className="otp">
-      {result === answer ? (
+      {answer.length === otpValues.length && otpValues.join("") === answer ? (
         <div id="verified-text">Your email is verified!</div>
       ) : (
         <div>
+          <p id="answer">Code: {answer}</p>
           <p className="main-text">Verify your email address</p>
           <div className="inputs">{inputsArray()}</div>
         </div>

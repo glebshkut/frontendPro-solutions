@@ -1,13 +1,13 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 export default function Input({
   active,
   index,
   setActive,
   inputsAmount,
-  setResult,
+  otpValues,
+  setOTPValues,
 }) {
-  const [input, setInput] = useState("");
   const ref = useRef();
 
   const handleChange = (e) => {
@@ -15,20 +15,34 @@ export default function Input({
     if (value.length > 1) {
       return;
     }
-    setInput(value);
-    setResult((prev) => {
-      return prev + `${value}`;
+    setOTPValues((prev) => {
+      const newArr = [...prev];
+      newArr.splice(index, 1, value);
+      return newArr;
     });
     if (value.length === 1 && active < inputsAmount - 1) {
       setActive(active + 1);
     }
   };
 
+  const handleInputPaste = (event) => {
+    event.preventDefault();
+    const pasteData = event.clipboardData.getData("Text");
+
+    if (pasteData.length !== inputsAmount) {
+      return;
+    }
+
+    const newValues = pasteData.split("").slice(0, inputsAmount);
+    setOTPValues(newValues);
+    setActive(inputsAmount - 1);
+  };
+
   const checkDelete = (e) => {
-    const value = e.target.value;
     if (e.keyCode === 8 && active !== 0) {
-      setResult((prev) => prev.slice(0, -1));
-      if (value.length === 0) {
+      const value = e.target.value;
+      setOTPValues((prev) => prev.slice(0, -1));
+      if (value.length === 0 && active !== 0) {
         setActive(active - 1);
       }
     }
@@ -43,11 +57,15 @@ export default function Input({
   return (
     <input
       ref={ref}
-      value={input}
+      value={otpValues[index]}
       onChange={(e) => handleChange(e)}
       onKeyDown={(e) => checkDelete(e)}
-      className={`${active === index ? "active-input" : ""}`}
-      type="number"
+      onClick={() => {
+        setActive(index);
+      }}
+      onPaste={handleInputPaste}
+      className={active === index && "active-input"}
+      type="text"
     />
   );
 }

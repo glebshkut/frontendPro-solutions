@@ -14,6 +14,15 @@ input::-webkit-inner-spin-button {
   background-color: gray;
 }
 
+#answer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 0;
+  font-size: 30px;
+}
+
+
 .main-text {
   font-size: 30px;
   font-weight: 600;
@@ -34,17 +43,16 @@ input::-webkit-inner-spin-button {
 .inputs {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   gap: 10px;
-  width: 100vw;
 }
 
 .inputs input {
+  width: 200px;
+  height: 200px;
   border-radius: 20px;
   border: 2px white solid;
   text-align: center;
-  height: 10em;
-  width: 10em;
+  font-size: 150px;
   color: white;
   background-color: rgb(90, 89, 89);
 }
