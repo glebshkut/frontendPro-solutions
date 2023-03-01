@@ -1,0 +1,54 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+}
+
+.main-text {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.otp {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.otp #verified-text {
+  font-size: 50px;
+  color: aqua;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  width: 100vw;
+}
+
+.inputs input {
+  border-radius: 20px;
+  border: 2px white solid;
+  text-align: center;
+  height: 10em;
+  width: 10em;
+  color: white;
+  background-color: rgb(90, 89, 89);
+}
+
+.inputs .active-input {
+  background-color: rgb(81, 187, 187);
+}
