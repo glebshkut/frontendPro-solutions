@@ -9,7 +9,7 @@ const Testimonials = () => {
         <h2>What Our Customers Are Saying</h2>
         <div>Arrows</div>
       </header>
-      <div>
+      <div className="testimonials-array">
         {testimonials.map((testimonial, index) => (
           <TestimonialComponent testimonial={testimonial} index={index} />
         ))}
