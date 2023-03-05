@@ -18,8 +18,6 @@ export default function TestimonialComponent({ testimonial, index }) {
         {text.length > 40 ? `${text.slice(0, 40)}...` : text}
       </p>
       <Profile profile={{ name, jobTitle, companyName, avatar }} />
-      {/* rating: {rating}, name: {name}, jobTitle: {jobTitle}, companyName:{" "}
-      {companyName}, avatar: {avatar}, title: {title}, text: {text}, */}
     </div>
   );
 }
